@@ -16,6 +16,17 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onAppear {
+            getStarted()
+        }
+    }
+    
+    func getStarted() {
+        let item = TodoItem(id: "0", text: "2 test", importance: .common,
+                             isFinished: false, dateStart: Date())
+        let json = item.json
+        print(json)
+        print(TodoItem.parse(json: json))
     }
 }
 

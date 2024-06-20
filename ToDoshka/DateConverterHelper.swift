@@ -14,13 +14,13 @@ enum DateConverterHelper {
         return dateFormatter
     }()
     
-    static func UTCToLocal(date: String) -> Date {
+    static func UTCToLocal(date: String) -> Date? {
         guard let utcDate = dateFormatter.date(from: date) else {
-            return Date()
+            return nil
         }
         
         let timeZoneOffset = TimeZone.current.secondsFromGMT(for: utcDate)
-        return Calendar.current.date(byAdding: .second, value: timeZoneOffset, to: utcDate) ?? Date()
+        return Calendar.current.date(byAdding: .second, value: timeZoneOffset, to: utcDate)
     }
     
     static func localToUTC(date: Date) -> String {
