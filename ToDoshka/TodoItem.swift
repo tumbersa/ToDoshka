@@ -1,7 +1,6 @@
 import Foundation
 
 struct TodoItem: Codable {
-    
     let id: String
     let text: String
     let importance: Importance
@@ -96,5 +95,15 @@ extension TodoItem {
             print(error)
         }
         return nil
+    }
+}
+
+extension TodoItem: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: TodoItem, rhs: TodoItem) -> Bool {
+        return lhs.id == rhs.id
     }
 }

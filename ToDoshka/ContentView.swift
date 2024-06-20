@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+    var fileCache = FileCache()
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -22,11 +24,10 @@ struct ContentView: View {
     }
     
     func getStarted() {
-        let item = TodoItem(id: "0", text: "2 test", importance: .common,
-                             isFinished: false, dateStart: Date())
-        let json = item.json
-        print(json)
-        print(TodoItem.parse(json: json))
+        fileCache.downloadFrom(filePath: "todoItems.json")
+        print(fileCache.todoItems)
+       
+        fileCache.uploadTo(filePath: "todoItems2.json")
     }
 }
 

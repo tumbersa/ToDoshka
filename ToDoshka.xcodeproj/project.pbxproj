@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A44D1F222C248269009C9DB0 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44D1F212C248269009C9DB0 /* TodoItem.swift */; };
 		A44D1F242C24829F009C9DB0 /* DateConverterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44D1F232C24829F009C9DB0 /* DateConverterHelper.swift */; };
+		A44D1F262C24834E009C9DB0 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44D1F252C24834E009C9DB0 /* FileCache.swift */; };
 		A45594132C23719E0090F607 /* ToDoshkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45594122C23719E0090F607 /* ToDoshkaApp.swift */; };
 		A45594152C23719E0090F607 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45594142C23719E0090F607 /* ContentView.swift */; };
 		A45594172C2371A00090F607 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A45594162C2371A00090F607 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		A44D1F212C248269009C9DB0 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		A44D1F232C24829F009C9DB0 /* DateConverterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverterHelper.swift; sourceTree = "<group>"; };
+		A44D1F252C24834E009C9DB0 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		A455940F2C23719E0090F607 /* ToDoshka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoshka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45594122C23719E0090F607 /* ToDoshkaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoshkaApp.swift; sourceTree = "<group>"; };
 		A45594142C23719E0090F607 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				A45594142C23719E0090F607 /* ContentView.swift */,
 				A45594162C2371A00090F607 /* Assets.xcassets */,
 				A45594182C2371A00090F607 /* Preview Content */,
+				A44D1F252C24834E009C9DB0 /* FileCache.swift */,
 			);
 			path = ToDoshka;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				A45594152C23719E0090F607 /* ContentView.swift in Sources */,
 				A44D1F222C248269009C9DB0 /* TodoItem.swift in Sources */,
 				A44D1F242C24829F009C9DB0 /* DateConverterHelper.swift in Sources */,
+				A44D1F262C24834E009C9DB0 /* FileCache.swift in Sources */,
 				A45594132C23719E0090F607 /* ToDoshkaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
