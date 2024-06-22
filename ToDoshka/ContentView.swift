@@ -24,10 +24,7 @@ struct ContentView: View {
     }
     
     func getStarted() {
-        fileCache.downloadFrom(filePath: "todoItems.json")
-        print(fileCache.todoItems)
-       
-        fileCache.uploadTo(filePath: "todoItems2.json")
+        
     }
 }
 

@@ -39,7 +39,8 @@ final class FileCache {
         let decoder = JSONDecoder()
         do {
             let data = try Data(contentsOf: fileURL)
-            todoItems = try decoder.decode(Set<TodoItem>.self, from: data)
+            let items = try decoder.decode(Set<TodoItem>.self, from: data)
+            items.forEach{ todoItems.insert($0) }
         } catch {
             print("\(error)")
         }

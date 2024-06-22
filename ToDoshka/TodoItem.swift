@@ -98,6 +98,68 @@ extension TodoItem {
     }
 }
 
+extension TodoItem {
+    var csv: String {
+        var deadlineStr = " "
+        if let deadline {
+            deadlineStr = DateConverterHelper.localToUTC(date: deadline)
+        }
+        let dateStartStr = DateConverterHelper.localToUTC(date: dateStart)
+        
+        var dateEditStr = " "
+        if let dateEdit {
+            dateEditStr = DateConverterHelper.localToUTC(date: dateEdit)
+        }
+        
+        let values: [String] = [
+            String(id),
+            "\"\(text)\"",
+            importance != .common ? importance.rawValue : " ",
+            deadlineStr,
+            String(isFinished),
+            dateStartStr,
+            dateEditStr
+        ]
+        
+        return values.joined(separator: ",")
+    }
+    
+    static func parse(csv: String) -> TodoItem? {
+        var insideQuotes = false
+        var currentStr = ""
+        var values: [String] = []
+        
+        var item = TodoItem(text: "", importance: .common, isFinished: false, dateStart: Date())
+        for char in csv {
+            if char == "\"" {
+                insideQuotes.toggle()
+            } else if char == "," && !insideQuotes {
+                values.append(currentStr)
+                currentStr = ""
+            } else {
+                currentStr += String(char)
+            }
+        }
+        
+        let impotance = values[2] == " " ? .common : (Importance(rawValue: values[2]) ?? .common)
+        let deadlineStr = values[3] == " " ? nil : DateConverterHelper.UTCToLocal(date: values[3])
+        let dateEditStr = values[5] == " " ? nil : DateConverterHelper.UTCToLocal(date: values[5])
+        guard let isFinished = Bool(values[4]),
+              let dateStartStr = DateConverterHelper.UTCToLocal(date: values[5]) else {
+            return nil
+        }
+        return TodoItem(
+            id: values[0],
+            text: values[1],
+            importance:  impotance,
+            deadline: deadlineStr,
+            isFinished: isFinished,
+            dateStart: dateStartStr,
+            dateEdit: dateEditStr
+        )
+    }
+}
+
 extension TodoItem: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
