@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+    var fileCache = FileCache()
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,6 +18,13 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onAppear {
+            getStarted()
+        }
+    }
+    
+    func getStarted() {
+        
     }
 }
 

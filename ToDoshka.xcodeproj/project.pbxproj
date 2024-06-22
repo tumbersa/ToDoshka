@@ -7,22 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A44D1F222C248269009C9DB0 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44D1F212C248269009C9DB0 /* TodoItem.swift */; };
+		A44D1F242C24829F009C9DB0 /* DateConverterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44D1F232C24829F009C9DB0 /* DateConverterHelper.swift */; };
+		A44D1F262C24834E009C9DB0 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44D1F252C24834E009C9DB0 /* FileCache.swift */; };
 		A45594132C23719E0090F607 /* ToDoshkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45594122C23719E0090F607 /* ToDoshkaApp.swift */; };
 		A45594152C23719E0090F607 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45594142C23719E0090F607 /* ContentView.swift */; };
 		A45594172C2371A00090F607 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A45594162C2371A00090F607 /* Assets.xcassets */; };
 		A455941A2C2371A00090F607 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A45594192C2371A00090F607 /* Preview Assets.xcassets */; };
+		A45F21822C26890F00E822F6 /* ToDoshkaUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F21812C26890F00E822F6 /* ToDoshkaUnitTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A45F21832C26890F00E822F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A45594072C23719E0090F607 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A455940E2C23719E0090F607;
+			remoteInfo = ToDoshka;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		A44D1F212C248269009C9DB0 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		A44D1F232C24829F009C9DB0 /* DateConverterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverterHelper.swift; sourceTree = "<group>"; };
+		A44D1F252C24834E009C9DB0 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		A455940F2C23719E0090F607 /* ToDoshka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoshka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45594122C23719E0090F607 /* ToDoshkaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoshkaApp.swift; sourceTree = "<group>"; };
 		A45594142C23719E0090F607 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A45594162C2371A00090F607 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A45594192C2371A00090F607 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A45F217F2C26890F00E822F6 /* ToDoshkaUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoshkaUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A45F21812C26890F00E822F6 /* ToDoshkaUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoshkaUnitTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A455940C2C23719E0090F607 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A45F217C2C26890F00E822F6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -36,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				A45594112C23719E0090F607 /* ToDoshka */,
+				A45F21802C26890F00E822F6 /* ToDoshkaUnitTests */,
 				A45594102C23719E0090F607 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				A455940F2C23719E0090F607 /* ToDoshka.app */,
+				A45F217F2C26890F00E822F6 /* ToDoshkaUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,10 +79,13 @@
 		A45594112C23719E0090F607 /* ToDoshka */ = {
 			isa = PBXGroup;
 			children = (
+				A44D1F212C248269009C9DB0 /* TodoItem.swift */,
+				A44D1F232C24829F009C9DB0 /* DateConverterHelper.swift */,
 				A45594122C23719E0090F607 /* ToDoshkaApp.swift */,
 				A45594142C23719E0090F607 /* ContentView.swift */,
 				A45594162C2371A00090F607 /* Assets.xcassets */,
 				A45594182C2371A00090F607 /* Preview Content */,
+				A44D1F252C24834E009C9DB0 /* FileCache.swift */,
 			);
 			path = ToDoshka;
 			sourceTree = "<group>";
@@ -65,6 +96,14 @@
 				A45594192C2371A00090F607 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A45F21802C26890F00E822F6 /* ToDoshkaUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				A45F21812C26890F00E822F6 /* ToDoshkaUnitTests.swift */,
+			);
+			path = ToDoshkaUnitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +126,24 @@
 			productReference = A455940F2C23719E0090F607 /* ToDoshka.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A45F217E2C26890F00E822F6 /* ToDoshkaUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A45F21872C26890F00E822F6 /* Build configuration list for PBXNativeTarget "ToDoshkaUnitTests" */;
+			buildPhases = (
+				A45F217B2C26890F00E822F6 /* Sources */,
+				A45F217C2C26890F00E822F6 /* Frameworks */,
+				A45F217D2C26890F00E822F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A45F21842C26890F00E822F6 /* PBXTargetDependency */,
+			);
+			name = ToDoshkaUnitTests;
+			productName = ToDoshkaUnitTests;
+			productReference = A45F217F2C26890F00E822F6 /* ToDoshkaUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -99,6 +156,10 @@
 				TargetAttributes = {
 					A455940E2C23719E0090F607 = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					A45F217E2C26890F00E822F6 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = A455940E2C23719E0090F607;
 					};
 				};
 			};
@@ -116,6 +177,7 @@
 			projectRoot = "";
 			targets = (
 				A455940E2C23719E0090F607 /* ToDoshka */,
+				A45F217E2C26890F00E822F6 /* ToDoshkaUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -130,6 +192,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A45F217D2C26890F00E822F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -138,11 +207,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				A45594152C23719E0090F607 /* ContentView.swift in Sources */,
+				A44D1F222C248269009C9DB0 /* TodoItem.swift in Sources */,
+				A44D1F242C24829F009C9DB0 /* DateConverterHelper.swift in Sources */,
+				A44D1F262C24834E009C9DB0 /* FileCache.swift in Sources */,
 				A45594132C23719E0090F607 /* ToDoshkaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A45F217B2C26890F00E822F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A45F21822C26890F00E822F6 /* ToDoshkaUnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A45F21842C26890F00E822F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A455940E2C23719E0090F607 /* ToDoshka */;
+			targetProxy = A45F21832C26890F00E822F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A455941B2C2371A00090F607 /* Debug */ = {
@@ -322,6 +410,42 @@
 			};
 			name = Release;
 		};
+		A45F21852C26890F00E822F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 82HCH9V652;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tumbersa.ToDoshkaUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToDoshka.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ToDoshka";
+			};
+			name = Debug;
+		};
+		A45F21862C26890F00E822F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 82HCH9V652;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tumbersa.ToDoshkaUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToDoshka.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ToDoshka";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -339,6 +463,15 @@
 			buildConfigurations = (
 				A455941E2C2371A00090F607 /* Debug */,
 				A455941F2C2371A00090F607 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A45F21872C26890F00E822F6 /* Build configuration list for PBXNativeTarget "ToDoshkaUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A45F21852C26890F00E822F6 /* Debug */,
+				A45F21862C26890F00E822F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
