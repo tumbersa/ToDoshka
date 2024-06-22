@@ -129,7 +129,6 @@ extension TodoItem {
         var currentStr = ""
         var values: [String] = []
         
-        var item = TodoItem(text: "", importance: .common, isFinished: false, dateStart: Date())
         for char in csv {
             if char == "\"" {
                 insideQuotes.toggle()

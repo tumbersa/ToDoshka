@@ -6,30 +6,67 @@
 //
 
 import XCTest
+@testable import ToDoshka
 
 final class ToDoshkaUnitTests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testToDoItemEncodeDecode () throws {
+        let item = TodoItem(
+            id: "0",
+            text: "test 1",
+            importance: .common,
+            deadline: nil,
+            isFinished: false,
+            dateStart: Date(timeIntervalSince1970: 8000000),
+            dateEdit: Date(timeIntervalSince1970: 3000000)
+        )
+        
+        let encodedData = try JSONEncoder().encode(item)
+        let json = item.json
+        
+        let decodedItem = try JSONDecoder().decode(TodoItem.self, from: encodedData)
+        XCTAssertEqual(item, decodedItem)
+        
+        let parsedItem = TodoItem.parse(json: json)
+        XCTAssertEqual(item, parsedItem)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testTodoItemCSVConversion() throws {
+        let item = TodoItem(
+            id: "0",
+            text: "test 1",
+            importance: .common,
+            deadline: nil,
+            isFinished: false,
+            dateStart: Date(timeIntervalSince1970: 8000000),
+            dateEdit: Date(timeIntervalSince1970: 3000000)
+        )
+        
+        let csvString = item.csv
+        let parsedItem = TodoItem.parse(csv: csvString)
+        
+        XCTAssertEqual(item, parsedItem)
     }
-
+    
+    func testTodoItemHashable() throws {
+        let item1 = TodoItem(id: "0", text: "qwerty", importance: .common, deadline: nil, isFinished: false, dateStart: Date(), dateEdit: nil)
+        let item2 = TodoItem(id: "0", text: "qwerty 2", importance: .important, deadline: nil, isFinished: false, dateStart: Date(), dateEdit: nil)
+        
+        XCTAssertEqual(item1, item2)
+        XCTAssertEqual(item1.hashValue, item2.hashValue)
+        
+        var set: Set<TodoItem> = []
+        set.insert(item1)
+        set.insert(item2)
+        
+        XCTAssertEqual(set.count, 1)
+    }
 }
