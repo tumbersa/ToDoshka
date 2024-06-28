@@ -11,6 +11,7 @@ enum DateConverterHelper {
     static var dateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+        dateFormatter.dateStyle = .medium
         return dateFormatter
     }()
     
