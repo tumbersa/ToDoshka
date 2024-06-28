@@ -79,13 +79,12 @@
 		A45594112C23719E0090F607 /* ToDoshka */ = {
 			isa = PBXGroup;
 			children = (
-				A44D1F212C248269009C9DB0 /* TodoItem.swift */,
-				A44D1F232C24829F009C9DB0 /* DateConverterHelper.swift */,
-				A45594122C23719E0090F607 /* ToDoshkaApp.swift */,
-				A45594142C23719E0090F607 /* ContentView.swift */,
-				A45594162C2371A00090F607 /* Assets.xcassets */,
+				A48C5F7C2C2F0EB600AE0C62 /* Service */,
+				A48C5F7B2C2F0EA200AE0C62 /* Resources */,
+				A48C5F7A2C2F0E7400AE0C62 /* Utilities */,
+				A48C5F792C2F0E6500AE0C62 /* Model */,
+				A48C5F782C2F0E4600AE0C62 /* View */,
 				A45594182C2371A00090F607 /* Preview Content */,
-				A44D1F252C24834E009C9DB0 /* FileCache.swift */,
 			);
 			path = ToDoshka;
 			sourceTree = "<group>";
@@ -104,6 +103,47 @@
 				A45F21812C26890F00E822F6 /* ToDoshkaUnitTests.swift */,
 			);
 			path = ToDoshkaUnitTests;
+			sourceTree = "<group>";
+		};
+		A48C5F782C2F0E4600AE0C62 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A45594142C23719E0090F607 /* ContentView.swift */,
+				A45594122C23719E0090F607 /* ToDoshkaApp.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A48C5F792C2F0E6500AE0C62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A44D1F212C248269009C9DB0 /* TodoItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A48C5F7A2C2F0E7400AE0C62 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A44D1F232C24829F009C9DB0 /* DateConverterHelper.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A48C5F7B2C2F0EA200AE0C62 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A45594162C2371A00090F607 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A48C5F7C2C2F0EB600AE0C62 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A44D1F252C24834E009C9DB0 /* FileCache.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

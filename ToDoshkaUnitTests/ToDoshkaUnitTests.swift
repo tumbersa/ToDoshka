@@ -10,13 +10,6 @@ import XCTest
 
 final class ToDoshkaUnitTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        
-    }
-
-    override func tearDownWithError() throws {
-        
-    }
 
     func testToDoItemEncodeDecode () throws {
         let item = TodoItem(
@@ -29,13 +22,9 @@ final class ToDoshkaUnitTests: XCTestCase {
             dateEdit: Date(timeIntervalSince1970: 3000000)
         )
         
-        let encodedData = try JSONEncoder().encode(item)
         let json = item.json
-        
-        let decodedItem = try JSONDecoder().decode(TodoItem.self, from: encodedData)
-        XCTAssertEqual(item, decodedItem)
-        
         let parsedItem = TodoItem.parse(json: json)
+        
         XCTAssertEqual(item, parsedItem)
     }
 

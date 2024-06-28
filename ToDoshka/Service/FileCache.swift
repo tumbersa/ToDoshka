@@ -22,11 +22,13 @@ final class FileCache {
         let fileURL = documentsDirectory.appending(path: filePath)
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
+        let jsonArray = todoItems.map { $0.json }
+        
         do {
-            let data = try encoder.encode(todoItems)
+            let data = try JSONSerialization.data(withJSONObject: jsonArray, options: .prettyPrinted)
             try data.write(to: fileURL)
         } catch {
-            print("\(error)")
+            print(error)
         }
     }
     
@@ -36,13 +38,14 @@ final class FileCache {
         }
         print(documentsDirectory)
         let fileURL = documentsDirectory.appending(path: filePath)
-        let decoder = JSONDecoder()
         do {
             let data = try Data(contentsOf: fileURL)
-            let items = try decoder.decode(Set<TodoItem>.self, from: data)
-            items.forEach{ todoItems.insert($0) }
+            if let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [Any] {
+                let items = jsonArray.compactMap { TodoItem.parse(json: $0) }
+                items.forEach { todoItems.insert($0) }
+            }
         } catch {
-            print("\(error)")
+            print(error)
         }
     }
 }

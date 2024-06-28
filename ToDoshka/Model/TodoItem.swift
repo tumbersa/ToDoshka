@@ -1,6 +1,6 @@
 import Foundation
 
-struct TodoItem: Codable {
+struct TodoItem {
     let id: String
     let text: String
     let importance: Importance
@@ -25,76 +25,61 @@ struct TodoItem: Codable {
         self.dateEdit = dateEdit
     }
     
-    enum CodingKeys: CodingKey {
-        case id
-        case text
-        case importance
-        case deadline
-        case isFinished
-        case dateStart
-        case dateEdit
-    }
-    
-    init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(String.self, forKey: .id)
-        self.text = try container.decode(String.self, forKey: .text)
-        self.importance = try container.decodeIfPresent(TodoItem.Importance.self, forKey: .importance) ?? .common
-        
-        let deadlineStr = try container.decodeIfPresent(String.self, forKey: .deadline) ?? ""
-        self.deadline = DateConverterHelper.UTCToLocal(date: deadlineStr)
-        self.isFinished = try container.decode(Bool.self, forKey: .isFinished)
-        
-        let dateStartStr = try container.decode(String.self, forKey: .dateStart)
-        self.dateStart = DateConverterHelper.UTCToLocal(date: dateStartStr) ?? Date()
-        
-        let dateEditStr = try container.decodeIfPresent(String.self, forKey: .dateEdit) ?? ""
-        self.dateEdit = DateConverterHelper.UTCToLocal(date: dateEditStr)
-    }
-    
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(text, forKey: .text)
-        switch importance {
-        case .unimportant, .important:
-            try container.encode(importance, forKey: .importance)
-        case .common:
-            break
-        }
-        if let deadline {
-            try container.encode( DateConverterHelper.localToUTC(date: deadline), forKey: .deadline)
-        }
-       
-        try container.encode(isFinished, forKey: .isFinished)
-        try container.encode( DateConverterHelper.localToUTC(date: dateStart), forKey: .dateStart)
-        if let dateEdit {
-            try container.encode(DateConverterHelper.localToUTC(date: dateEdit), forKey: .dateEdit)
-        }
-    }
-    
 }
 
 extension TodoItem {
     var json: Any {
-        do {
-            let data = try JSONEncoder().encode(self)
-            return try JSONSerialization.jsonObject(with: data)
-        } catch {
-            print(error)
+        var dict: [String: Any] = [
+            "id": id,
+            "text": text,
+            "isFinished": isFinished,
+            "dateStart": DateConverterHelper.localToUTC(date: dateStart)
+        ]
+        
+        if importance != .common {
+            dict["importance"] = importance.rawValue
         }
-        return [:]
+        
+        if let deadline = deadline {
+            dict["deadline"] = DateConverterHelper.localToUTC(date: deadline)
+        }
+        
+        if let dateEdit = dateEdit {
+            dict["dateEdit"] = DateConverterHelper.localToUTC(date: dateEdit)
+        }
+        
+        return dict
     }
     
     static func parse(json: Any) -> TodoItem? {
-        do {
-            let data = try JSONSerialization.data(withJSONObject: json)
-            return try JSONDecoder().decode(TodoItem.self, from: data)
+        guard let dict = json as? [String: Any],
+              let id = dict["id"] as? String,
+              let text = dict["text"] as? String,
+              let isFinished = dict["isFinished"] as? Bool,
+              let dateStartStr = dict["dateStart"] as? String,
+              let dateStart = DateConverterHelper.UTCToLocal(date: dateStartStr)
+        else {
+            return nil
         }
-        catch {
-            print(error)
-        }
-        return nil
+        
+        let importanceStr = dict["importance"] as? String ?? Importance.common.rawValue
+        let importance = Importance(rawValue: importanceStr) ?? .common
+        
+        let deadlineStr = dict["deadline"] as? String
+        let deadline = deadlineStr.flatMap { DateConverterHelper.UTCToLocal(date: $0) }
+        
+        let dateEditStr = dict["dateEdit"] as? String
+        let dateEdit = dateEditStr.flatMap { DateConverterHelper.UTCToLocal(date: $0) }
+        
+        return TodoItem(
+            id: id,
+            text: text,
+            importance: importance,
+            deadline: deadline,
+            isFinished: isFinished,
+            dateStart: dateStart,
+            dateEdit: dateEdit
+        )
     }
 }
 
