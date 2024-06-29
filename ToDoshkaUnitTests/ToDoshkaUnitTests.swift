@@ -45,17 +45,4 @@ final class ToDoshkaUnitTests: XCTestCase {
         XCTAssertEqual(item, parsedItem)
     }
     
-    func testTodoItemHashable() throws {
-        let item1 = TodoItem(id: "0", text: "qwerty", importance: .common, deadline: nil, isFinished: false, dateStart: Date(), dateEdit: nil)
-        let item2 = TodoItem(id: "0", text: "qwerty 2", importance: .important, deadline: nil, isFinished: false, dateStart: Date(), dateEdit: nil)
-        
-        XCTAssertEqual(item1, item2)
-        XCTAssertEqual(item1.hashValue, item2.hashValue)
-        
-        var set: Set<TodoItem> = []
-        set.insert(item1)
-        set.insert(item2)
-        
-        XCTAssertEqual(set.count, 1)
-    }
 }

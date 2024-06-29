@@ -8,11 +8,49 @@
 import SwiftUI
 
 struct ToDoListRaw: View {
+    
+    var item: TodoItem
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        HStack {
+            let imageResource: ImageResource = if item.isFinished {
+                .rawOn
+            } else {
+                switch item.importance {
+                case .unimportant, .common:
+                        .rawOff
+                case .important:
+                        .rawHighPriority
+                }
+            }
+            
+            Image(imageResource)
+                .padding(.trailing, 2)
+                
+            if item.importance != .common && !item.isFinished {
+                Image(item.importance == .important ? .priorityHigh : .priorityLow)
+            }
+            
+            VStack(alignment: .leading, spacing: 0) {
+                Text(item.text)
+                    .strikethrough(item.isFinished, color: .strikeThrough)
+                    .foregroundStyle(item.isFinished ? .strikeThrough : Color(.label))
+                
+                if let deadline = item.deadline {
+                    HStack {
+                        Image(.calendar)
+                        Text(DateConverterHelper.dateFormatterShort.string(from: deadline))
+                    }
+                }
+            }
+            Spacer()
+            Image(.chevronRight)
+        }
+        .frame(height: 56)
     }
 }
 
 #Preview {
-    ToDoListRaw()
+    ToDoListRaw(item: TodoItem(text: "Попытка пытка", importance: .unimportant, deadline: Date(), isFinished: false, dateStart: Date()))
 }

@@ -10,6 +10,10 @@ import SwiftUI
 struct DetailedToDoView: View {
     @Environment(\.dismiss) var dismiss
     
+    @ObservedObject var viewModel: ToDoListViewModel
+    
+    @Binding var item: TodoItem?
+    
     @State private var description: String = ""
     @State private var selectionImportance = 1
     
@@ -39,6 +43,12 @@ struct DetailedToDoView: View {
                     }
                 }
             }
+            .onAppear {
+                description = item?.text ?? ""
+                selectionImportance = item?.importance.rawValue ?? 1
+                deadlineDate = item?.deadline ?? Date.now.addingTimeInterval(86400)
+                isDeadline = item?.deadline != nil
+            }
         }
         
         var portraitView: some View {
@@ -51,7 +61,7 @@ struct DetailedToDoView: View {
                         .padding(.leading, 16)
                         .padding(.top, -50)
                         .frame(minHeight: 120)
-                        .background(Color.white)
+                        .background(Color.customLabel)
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                         .onChange(of: description) { _, newValue in
                             guard let newValueLastChar = newValue.last else { return }
@@ -66,7 +76,7 @@ struct DetailedToDoView: View {
                         deadlineSection
                         
                     }
-                    .background(Color.white)
+                    .background(Color.customLabel)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     
                     deleteButton
@@ -79,6 +89,15 @@ struct DetailedToDoView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Сохранить") {
+                        //Добавить, если не было элемента и обновить если был
+                        let deadlineForItem = isDeadline ? deadlineDate : item?.deadline ?? nil
+                        let newItem = TodoItem(id: item?.id ?? UUID().uuidString, text: description, importance: TodoItem.Importance(rawValue: selectionImportance) ?? .common, deadline: deadlineForItem, isFinished: item?.isFinished ?? false, dateStart: item?.dateStart ?? Date(), dateEdit: item?.dateEdit)
+                        
+                        if item == nil {
+                            viewModel.add(item: newItem)
+                        } else {
+                            viewModel.update(item: newItem)
+                        }
                         dismiss()
                     }
                 }
@@ -99,7 +118,7 @@ struct DetailedToDoView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(.leading, 16)
                 .padding(.top, -250)
-                .background(Color.white)
+                .background(Color.customLabel)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .onChange(of: description) { _, newValue in
                     guard let newValueLastChar = newValue.last else { return }
@@ -187,12 +206,15 @@ struct DetailedToDoView: View {
         
         var deleteButton: some View {
             Button(action: {
-                //TODO: - Implement delete action here
+                if let item {
+                    viewModel.remove(by: item.id)
+                    dismiss()
+                }
             }, label: {
                 Text("Удалить")
                     .frame(maxWidth: .infinity, idealHeight: 54)
-                    .foregroundStyle(.red)
-                    .background(Color.white)
+                    .foregroundStyle(.customRed)
+                    .background(Color.customLabel)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
             })
         }
@@ -200,20 +222,6 @@ struct DetailedToDoView: View {
 }
 
 #Preview {
-    DetailedToDoView()
+    DetailedToDoView(viewModel: ToDoListViewModel(fileCache: FileCache()), item: .constant(nil))
 }
 
-struct Orientation {
-    static var isLandscape: Bool {
-        get {
-            let orientation = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.interfaceOrientation
-            return orientation!.isLandscape
-        }
-    }
-    static var isPortrait: Bool {
-        get {
-            let orientation = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.interfaceOrientation
-            return orientation!.isPortrait
-        }
-    }
-}

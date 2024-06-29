@@ -15,6 +15,12 @@ enum DateConverterHelper {
         return dateFormatter
     }()
     
+    static var dateFormatterShort = {
+        let dateFormatterShort = DateFormatter()
+        dateFormatterShort.dateFormat = "dd MMMM"
+        return dateFormatterShort
+    }()
+    
     static func UTCToLocal(date: String) -> Date? {
         guard let utcDate = dateFormatter.date(from: date) else {
             return nil

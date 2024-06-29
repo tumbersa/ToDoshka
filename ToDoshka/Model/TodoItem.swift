@@ -1,6 +1,6 @@
 import Foundation
 
-struct TodoItem {
+struct TodoItem:Equatable {
     let id: String
     let text: String
     let importance: Importance
@@ -9,10 +9,35 @@ struct TodoItem {
     let dateStart: Date
     let dateEdit: Date?
     
-    enum Importance: String, Codable {
-        case unimportant
-        case important
-        case common
+    enum Importance: Int {
+        case unimportant = 0
+        case important = 2
+        case common = 1
+        
+        func getString() -> String {
+            return switch self {
+            case .important:
+                "important"
+            case .common:
+                "common"
+            case .unimportant:
+                "unimportant"
+            }
+        }
+        
+        static func getInt(str: String) -> Int {
+            return switch str {
+            case "unimportant":
+                0
+            case "common":
+                1
+            case "important":
+                2
+            default:
+                3
+            }
+        
+        }
     }
     
     init(id: String = UUID().uuidString, text: String, importance: Importance, deadline: Date? = nil, isFinished: Bool, dateStart: Date, dateEdit: Date? = nil) {
@@ -37,7 +62,7 @@ extension TodoItem {
         ]
         
         if importance != .common {
-            dict["importance"] = importance.rawValue
+            dict["importance"] = importance.getString
         }
         
         if let deadline = deadline {
@@ -62,8 +87,8 @@ extension TodoItem {
             return nil
         }
         
-        let importanceStr = dict["importance"] as? String ?? Importance.common.rawValue
-        let importance = Importance(rawValue: importanceStr) ?? .common
+        let importanceStr = dict["importance"] as? String ?? Importance.common.getString()
+        let importance = Importance(rawValue: Importance.getInt(str: importanceStr)) ?? .common
         
         let deadlineStr = dict["deadline"] as? String
         let deadline = deadlineStr.flatMap { DateConverterHelper.UTCToLocal(date: $0) }
@@ -99,7 +124,7 @@ extension TodoItem {
         let values: [String] = [
             String(id),
             "\"\(text)\"",
-            importance != .common ? importance.rawValue : " ",
+            importance != .common ? importance.getString() : " ",
             deadlineStr,
             String(isFinished),
             dateStartStr,
@@ -125,7 +150,7 @@ extension TodoItem {
             }
         }
         
-        let impotance = values[2] == " " ? .common : (Importance(rawValue: values[2]) ?? .common)
+        let impotance = values[2] == " " ? .common : (Importance(rawValue: Importance.getInt(str:values[2])) ?? .common)
         let deadlineStr = values[3] == " " ? nil : DateConverterHelper.UTCToLocal(date: values[3])
         let dateEditStr = values[5] == " " ? nil : DateConverterHelper.UTCToLocal(date: values[5])
         guard let isFinished = Bool(values[4]),
@@ -141,15 +166,5 @@ extension TodoItem {
             dateStart: dateStartStr,
             dateEdit: dateEditStr
         )
-    }
-}
-
-extension TodoItem: Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    static func == (lhs: TodoItem, rhs: TodoItem) -> Bool {
-        return lhs.id == rhs.id
     }
 }
