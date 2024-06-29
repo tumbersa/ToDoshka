@@ -11,7 +11,9 @@ import SwiftUI
 struct ToDoshkaApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                ToDoListView()
+            }
         }
     }
 }
