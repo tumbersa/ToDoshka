@@ -22,8 +22,6 @@ final class DateCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
        
-        
-        
         contentView.addSubview(infoLabel)
         NSLayoutConstraint.activate([
             infoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -40,6 +38,17 @@ final class DateCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        deselected()
+    }
+    
+    func selected() {
+        contentView.backgroundColor = .lightGray
+        contentView.layer.cornerRadius = 15
+        contentView.layer.borderWidth = 3
+        contentView.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    func deselected() {
         contentView.backgroundColor = .clear
         contentView.layer.cornerRadius = 0
         contentView.layer.borderWidth = 0

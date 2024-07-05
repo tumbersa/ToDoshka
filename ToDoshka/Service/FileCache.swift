@@ -31,6 +31,13 @@ final class FileCache {
         }
     }
     
+    func  markAsNotComplete(item: TodoItem) {
+        if let oldItem = todoItems[item.id] {
+        
+            todoItems[item.id] = TodoItem(id: oldItem.id, text: oldItem.text, importance: oldItem.importance, deadline: oldItem.deadline, isFinished: false, dateStart: oldItem.dateStart, dateEdit: oldItem.dateEdit)
+        }
+    }
+    
     func update(item: TodoItem) {
         todoItems[item.id] = item
     }

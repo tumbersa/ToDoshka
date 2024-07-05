@@ -39,6 +39,12 @@ final class ToDoListViewModel: ObservableObject {
         updateItems()
     }
     
+    func markAsNotComplete(item: TodoItem) {
+        print(item.id)
+        fileCache.markAsNotComplete(item: item)
+        updateItems()
+    }
+    
     func remove(by id: String) {
         fileCache.remove(by: id)
         updateItems()

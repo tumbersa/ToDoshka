@@ -18,6 +18,7 @@
 		A47AE89A2C384C1C004731BC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AE8992C384C1C004731BC /* CalendarViewController.swift */; };
 		A47AE89C2C3851D1004731BC /* CalendarAndButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AE89B2C3851D1004731BC /* CalendarAndButtonView.swift */; };
 		A47AE8A02C385A69004731BC /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AE89F2C385A69004731BC /* DateCollectionViewCell.swift */; };
+		A47AE8A22C387FF7004731BC /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AE8A12C387FF7004731BC /* DateTableViewCell.swift */; };
 		A48C5F7E2C2F197C00AE0C62 /* ToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C5F7D2C2F197C00AE0C62 /* ToDoListView.swift */; };
 		A48C5F802C2F19AE00AE0C62 /* DetailedToDoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C5F7F2C2F19AE00AE0C62 /* DetailedToDoView.swift */; };
 		A48C5F822C2F1AA300AE0C62 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A48C5F812C2F1AA300AE0C62 /* Colors.xcassets */; };
@@ -51,6 +52,7 @@
 		A47AE8992C384C1C004731BC /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A47AE89B2C3851D1004731BC /* CalendarAndButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAndButtonView.swift; sourceTree = "<group>"; };
 		A47AE89F2C385A69004731BC /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		A47AE8A12C387FF7004731BC /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
 		A48C5F7D2C2F197C00AE0C62 /* ToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListView.swift; sourceTree = "<group>"; };
 		A48C5F7F2C2F19AE00AE0C62 /* DetailedToDoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedToDoView.swift; sourceTree = "<group>"; };
 		A48C5F812C2F1AA300AE0C62 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				A47AE89F2C385A69004731BC /* DateCollectionViewCell.swift */,
+				A47AE8A12C387FF7004731BC /* DateTableViewCell.swift */,
 			);
 			path = UIKIt;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A47AE8A22C387FF7004731BC /* DateTableViewCell.swift in Sources */,
 				A47AE89C2C3851D1004731BC /* CalendarAndButtonView.swift in Sources */,
 				A47AE89A2C384C1C004731BC /* CalendarViewController.swift in Sources */,
 				A47AE8972C384BBA004731BC /* CalendarToDoView.swift in Sources */,
