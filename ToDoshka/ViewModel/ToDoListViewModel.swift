@@ -52,4 +52,9 @@ final class ToDoListViewModel: ObservableObject {
     private func updateItems() {
         todoItems = Array(fileCache.todoItems.values)
     }
+    
+    func unicalDateArray() -> [String] {
+        let strArr = todoItems.compactMap{$0.deadline}.map{ DateConverterHelper.dateFormatterShort.string(from: $0).split(separator: " ").joined(separator: "\n")}
+        return Array(Set(strArr)).sorted()
+    }
 }

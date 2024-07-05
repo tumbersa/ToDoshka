@@ -98,11 +98,13 @@ struct DetailedToDoView: View {
                         } else {
                             viewModel.update(item: newItem)
                         }
+                        item = nil
                         dismiss()
                     }
                 }
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Отменить") {
+                        item = nil
                         dismiss()
                     }
                 }
@@ -208,6 +210,7 @@ struct DetailedToDoView: View {
             Button(action: {
                 if let item {
                     viewModel.remove(by: item.id)
+                    self.item = nil
                     dismiss()
                 }
             }, label: {
