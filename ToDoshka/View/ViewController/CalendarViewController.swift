@@ -18,7 +18,7 @@ final class CalendarViewController: UIViewController {
     
     private var prevSelectedIndexPath = IndexPath(row: 0, section: 0)
     private var viewIsDidAppear = false
-    private var selectedIndexPath: IndexPath?
+    private var selectedIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -152,7 +152,7 @@ extension CalendarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DateCollectionViewCell.reuseID, for: indexPath) as! DateCollectionViewCell
         cell.configure(text: dateArray[indexPath.row])
-        cell.isUserInteractionEnabled = false
+        
         
         if indexPath == selectedIndexPath {
                 cell.isSelected = true
@@ -173,6 +173,7 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
         guard let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell else { return }
         cell.selected()
         
+        tableView.scrollToRow(at: IndexPath(row: 0, section: indexPath.row), at: .top, animated: true)
         selectedIndexPath = indexPath
         
         if indexPath != prevSelectedIndexPath {
@@ -238,7 +239,7 @@ extension CalendarViewController: UITableViewDataSource {
 }
 
 extension CalendarViewController: UITableViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         updateCollectionViewSelection()
     }
     
