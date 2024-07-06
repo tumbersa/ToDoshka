@@ -14,6 +14,7 @@ struct ToDoListView: View {
     @State private var isPresentedDetailed = false
     @State private var selectedItem: TodoItem?
     @State private var isShowedFinishedCells: Bool = true
+    @State private var showingCalendarToDoView = false
     
     private let columns: [GridItem] = [
            GridItem(.flexible())
@@ -98,9 +99,17 @@ struct ToDoListView: View {
                 })
             }
         }
-        .containerRelativeFrame([.horizontal, .vertical])
+        //.containerRelativeFrame([.horizontal, .vertical])
         .background(Color.backPrimary)
         .navigationTitle("Мои дела")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink("Календарик") {
+                    CalendarAndButtonView(viewModel: viewModel, isPresentedDetailed: $isPresentedDetailed)
+                        .navigationBarTitle("Календарик", displayMode: .inline)
+                }
+            }
+        }
         .sheet(isPresented: $isPresentedDetailed, content: {
             NavigationStack {
                 DetailedToDoView(viewModel: viewModel, item: $selectedItem)

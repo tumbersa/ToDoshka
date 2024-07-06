@@ -39,6 +39,12 @@ final class ToDoListViewModel: ObservableObject {
         updateItems()
     }
     
+    func markAsNotComplete(item: TodoItem) {
+        print(item.id)
+        fileCache.markAsNotComplete(item: item)
+        updateItems()
+    }
+    
     func remove(by id: String) {
         fileCache.remove(by: id)
         updateItems()
@@ -51,5 +57,10 @@ final class ToDoListViewModel: ObservableObject {
     
     private func updateItems() {
         todoItems = Array(fileCache.todoItems.values)
+    }
+    
+    func unicalDateArray() -> [String] {
+        let strArr = todoItems.compactMap{$0.deadline}.map{ DateConverterHelper.dateFormatterShort.string(from: $0).split(separator: " ").joined(separator: "\n")}
+        return Array(Set(strArr)).sorted()
     }
 }

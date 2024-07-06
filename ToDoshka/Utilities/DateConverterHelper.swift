@@ -21,6 +21,7 @@ enum DateConverterHelper {
         return dateFormatterShort
     }()
     
+    
     static func UTCToLocal(date: String) -> Date? {
         guard let utcDate = dateFormatter.date(from: date) else {
             return nil
